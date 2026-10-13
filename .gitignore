@@ -20,3 +20,6 @@ backups
 coverage
 *.local
 *.tsbuildinfo
+
+.vercel
+.env*
