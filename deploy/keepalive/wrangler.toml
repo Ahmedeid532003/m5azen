@@ -1,0 +1,9 @@
+name = "m5azen-keepalive"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[triggers]
+crons = ["*/10 * * * *"]
+
+[vars]
+BACKEND_URL = "https://m5azen-api.onrender.com"
