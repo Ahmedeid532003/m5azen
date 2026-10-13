@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { FieldType } from '@prisma/client';
-import { existsSync, mkdirSync, unlinkSync } from 'fs';
+import { existsSync, unlinkSync } from 'fs';
 import { join, resolve } from 'path';
 import { PrismaService } from '../prisma/prisma.service';
 import { rowsFromProductFile } from './product-file';
@@ -214,9 +214,7 @@ export class ProductsService {
   }
 
   private imageDir() {
-    const dir = join(process.cwd(), 'uploads', 'products');
-    if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
-    return dir;
+    return join(process.cwd(), 'uploads', 'products');
   }
 
   async saveImage(id: string, file: { buffer: Buffer; mimetype: string }) {

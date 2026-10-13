@@ -1,7 +1,7 @@
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InvoiceStatus, TaskPriority, TaskStatus } from '@prisma/client';
 import * as ExcelJS from 'exceljs';
-import { createReadStream, existsSync, mkdirSync, unlinkSync } from 'fs';
+import { createReadStream, existsSync, unlinkSync } from 'fs';
 import { extname, join, resolve } from 'path';
 import { Readable } from 'stream';
 import { PrismaService } from '../prisma/prisma.service';
@@ -760,9 +760,7 @@ export class WorkService {
   }
 
   private uploadRoot() {
-    const root = resolve(process.cwd(), 'uploads');
-    if (!existsSync(root)) mkdirSync(root, { recursive: true });
-    return root;
+    return resolve(process.cwd(), 'uploads');
   }
 
   private async assertEntity(entityType: string, entityId: string) {
